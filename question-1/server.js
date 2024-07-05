@@ -26,7 +26,8 @@ async function fetchProducts(company, category, top, minPrice, maxPrice, token) 
             const responses = await Promise.all(requests);
             data = responses.flatMap((resp, index) => resp.data.map((product, ind) => ({
                 ...product,
-                productId: `${category}_${product.productName.replace(/\s/g, '_')}_${index}_${ind}`
+                productId: `${category}_${product.productName.replace(/\s/g, '_')}_${index}_${ind}`,
+                category: category
             })));
             data.sort((a, b) => a.rating - b.rating);
         } else {
